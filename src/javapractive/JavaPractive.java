@@ -6,6 +6,7 @@
 package javapractive;
 import java.util.Scanner;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 /**
  *
@@ -18,7 +19,7 @@ public class JavaPractive {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-        Practive2();
+        Practive6();
     } 
     
     public static String input(String text) //輸入函式
@@ -65,83 +66,45 @@ public class JavaPractive {
     //第二題
     public static void Practive2()
     {
-        /*
-        String str = input("");
-        String SpendsStr = "0,120,330,500,700";
-        String SummerCostStr = "2.10,3.02,4.39,4.97,5.63";
-        String NonSummerCostStr = "2.10,2.68,3.61,4.01,4.50";
-        ArrayList Spends = new ArrayList();
-        ArrayList SummerCost = new ArrayList();
-        ArrayList NonSummerCost = new ArrayList();
-        for(String retval: SpendsStr.split(","))
-        {
-            Spends.add(retval);
-        }
-        for(String retval: SummerCostStr.split(","))
-        {
-            SummerCost.add(retval);
-        }
-        for(String retval: NonSummerCostStr.split(","))
-        {
-            NonSummerCost.add(retval);
-        }
-        
-        
-        int spend = Integer.parseInt(str);
-        int sum=0,s,c=0;
-        for (int i=0; i<Spends.size(); i++)
-        {
-            System.out.println(Spends.get(i));
-            s = Integer.parseInt((String)Spends.get(i));
-            if(spend>s)
-            {
-                sum += spend;
-                c = s;
-            }else{
-                sum += Integer.parseInt((String)SummerCost.get(i))*(spend - c);
-                
-            }
-        }
-                */
         String str = input("");
         float spend = Float.parseFloat(str);
-        float sum=0,nsum=0;
+        float sum=0f,nsum=0f;
        
         if (spend>120)
         {
-            sum += 120 * 2.10f;
-            nsum += 120 * 2.10f;
+            sum += 120f * 2.10f;
+            nsum += 120f * 2.10f;
             if (spend>330)
             {
-                sum += (330 - 120) * 3.02f;
-                nsum += (330 - 120) * 2.68f;
-                if (spend>500)
+                sum += (330f - 120f) * 3.02f;
+                nsum += (330f - 120f) * 2.68f;
+                if (spend>500f)
                 {
-                    sum += (500 - 330) * 4.39f;
-                    nsum += (500 - 330) * 3.61f;
+                    sum += (500f - 330f) * 4.39f;
+                    nsum += (500f - 330f) * 3.61f;
                     if (spend>700)
                     {
-                        sum += (700 - 500) * 4.97f;
-                        nsum += (700 - 500) * 4.01f;
-                        sum += (spend - 700) * 5.63f;
-                        nsum += (spend - 700) * 4.50f;
+                        sum += (700f - 500f) * 4.97f;
+                        nsum += (700f - 500f) * 4.01f;
+                        sum += (spend - 700f) * 5.63f;
+                        nsum += (spend - 700f) * 4.50f;
                     }
                     else
                     {
-                        sum += (spend - 500) * 4.97f;
-                        nsum += (spend - 500) * 4.01f;
+                        sum += (spend - 500f) * 4.97f;
+                        nsum += (spend - 500f) * 4.01f;
                     }
                 }
                 else
                 {
-                    sum += (spend - 330) * 4.39f;
-                    nsum += (spend - 330) * 3.61f;
+                    sum += (spend - 330f) * 4.39f;
+                    nsum += (spend - 330f) * 3.61f;
                 }
             }
             else
             {
-                sum += (spend - 120) * 3.02f;
-                nsum += (spend - 120) * 2.68f;
+                sum += (spend - 120f) * 3.02f;
+                nsum += (spend - 120f) * 2.68f;
             }
         }
         else
@@ -158,6 +121,120 @@ public class JavaPractive {
     //第三題
     public static void Practive3()
     {
+        String[] zodiac = {"rat","ox","tiger","rabbit","dragon","snake","horse","sheep","monkey","rooster","dog","pig"};
+        short year = (short)Integer.parseInt(input(""));
+        year -= (short)2008;
+        byte c=0;
+        if(year<(short)0)
+        {
+            c = (byte)((byte)(year%(short)12) + (byte)12);
+        }
+        else
+        {
+            c = (byte)(year % (short)12);
+        }
+        System.out.println(zodiac[c]);
+        
+    }
+    
+    
+    
+    //第四題
+    public static void Practive4()
+    {
+        int x=Integer.parseInt(input("X 軸座標：")),y=Integer.parseInt(input("Y 軸座標："));
+        if(x>0)
+        {
+            if (y>0)
+            {
+                System.out.println("該點位於第一象限，離原點距離為根號 " + (x*x+y*y));
+            }
+            else if(y<0)
+            {
+                System.out.println("該點位於第四象限，離原點距離為根號 " + (x*x+y*y));
+            }
+            else
+            {
+                System.out.println("該點位於右半平面 X 軸上，離原點距離為根號 " + (x*x+y*y));
+            }
+        }
+        else if(x<0)
+        {
+            if (y>0)
+            {
+                System.out.println("該點位於第二象限，離原點距離為根號 " + (x*x+y*y));
+            }
+            else if(y<0)
+            {
+                System.out.println("該點位於第三象限，離原點距離為根號 " + (x*x+y*y));
+            }
+            else
+            {
+                System.out.println("該點位於左半平面 X 軸上，離原點距離為根號 " + (x*x+y*y));
+            }
+        }
+        else
+        {
+            if (y>0)
+            {
+                System.out.println("該點位於上半平面 Y 軸上，離原點距離為根號 " + (x*x+y*y));
+            }
+            else if(y<0)
+            {
+                System.out.println("該點位於下半平面 Y 軸上，離原點距離為根號 " + (x*x+y*y));
+            }
+            else
+            {
+                System.out.println("該點位於原點");
+            }
+        }
+    }
+    
+    
+    
+    //第五題
+    public static void Practive5()
+    {
+        int m=Integer.parseInt(input("請輸入階乘值 M："));
+        int n=1,sum=1;
+        while(sum<=m)
+        {
+            n++;
+            sum *= n;
+        }
+        System.out.println("超過 M 為 " + m + " 的最小階層 N 值為：" + n);
+    }
+    
+    
+    
+    //第六題
+    public static void Practive6()
+    {
+        String str = input("輸入值為：");
+        ArrayList list = new ArrayList(); 
+        for(String retval: str.split(","))
+        {
+            list.add(retval);
+        }
+        int[] num = new int[list.size()];
+        for (int i=0;i<list.size();i++)
+        {
+            num[i] = Integer.parseInt((String)list.get(i));
+        }
+        Arrays.sort(num);
+        String s="";
+        for(int i=0;i<num.length;i++)
+        {
+            s += num[i];
+        }
+        int min = Integer.parseInt(s);
+        s = "";
+        for(int i=num.length-1;i>=0;i--)
+        {
+            s += num[i];
+        }
+        int max = Integer.parseInt(s);
+        System.out.println("最大值數列與最小值數列差值為：" + (max-min));
     }
 }
 
