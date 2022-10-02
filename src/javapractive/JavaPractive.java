@@ -19,7 +19,7 @@ public class JavaPractive {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-        Practive6();
+        Practive7();
     } 
     
     public static String input(String text) //輸入函式
@@ -235,6 +235,43 @@ public class JavaPractive {
         }
         int max = Integer.parseInt(s);
         System.out.println("最大值數列與最小值數列差值為：" + (max-min));
+    }
+    
+    
+    
+    //第七題
+    public static void Practive7()
+    {
+        int[] cost = {186, 386, 586, 986};
+        float[] rate = {0.09f, 0.08f, 0.07f, 0.06f};
+        String str = input("輸入月租費型式及通話時間為：");
+        int[] num = splitInt(str,",");
+        int option = 0;
+        for(int i=0;i<cost.length;i++)
+        {
+            if((float)num[0]==cost[i]) {option=i;}
+        }
+        int total = Math.round(rate[option] * num[1]);
+        if(total > cost[option]*3) {total = Math.round(total * (0.8f - (0.1f * option)));}
+        else if(total > cost[option]*2) {total = Math.round(total * (0.9f - (0.1f * option)));}
+        else if(total > cost[option]) {}
+        else {total = cost[option];}
+        System.out.println("通話費為：" + total);
+    }
+    
+    public static int[] splitInt(String str, String s) //字串分割為整數陣列
+    {
+        ArrayList list = new ArrayList(); 
+        for(String retval: str.split(s))
+        {
+            list.add(retval);
+        }
+        int[] num = new int[list.size()];
+        for (int i=0;i<list.size();i++)
+        {
+            num[i] = Integer.parseInt((String)list.get(i));
+        }
+        return num;
     }
 }
 
