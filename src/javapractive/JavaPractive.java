@@ -19,14 +19,14 @@ public class JavaPractive {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-        Practive7();
+        Practive15();
     } 
     
     public static String input(String text) //輸入函式
     {
         Scanner sc = new Scanner(System.in);
         System.out.print(text);
-        String str = sc.next();
+        String str = sc.nextLine();
         return str;
     }
     
@@ -272,6 +272,175 @@ public class JavaPractive {
             num[i] = Integer.parseInt((String)list.get(i));
         }
         return num;
+    }
+    
+    
+    
+    //第八題
+    public static void Practive8()
+    {
+        String str = input("輸入第一行正整數為：");
+        byte[] num = new byte[Integer.parseInt(str)];
+        str = input("第二行中數列中的數字為：");
+        int c = 0;
+        for(String retval: str.split("\\s+"))
+        {
+            num[c] = (byte)Integer.parseInt(retval);
+            c++;
+        }
+                
+        c=0;
+        byte[] maxCount = new byte[num.length];
+        byte[] maxNum = new byte[num.length];
+        for(int i=0;i<num.length;i++)
+        {
+            boolean singleNum = true;
+            for(int j=0;j<maxNum.length;j++)
+            {
+                if(num[i]==maxNum[j])
+                {
+                    maxCount[j]++;
+                    singleNum = false;
+                    break;
+                }
+            }
+            if(singleNum)
+            {
+                maxCount[c] = 1;
+                maxNum[c] = num[i];
+                c++;
+            }
+            
+        }
+        c = 0;
+        for(int i=0;i<maxCount.length;i++)
+        {
+            if(maxCount[i]>maxCount[c]){c=i;}
+        }
+        if(maxCount[c]==1)
+        {
+            System.out.println("每個數字剛好只出現 1 次");
+        }
+        else
+        {
+            str = "";
+            for(int i=0;i<maxNum.length;i++)
+            {
+                if(maxCount[i]==maxCount[c]){str+=Integer.toString((int)maxNum[i])+" ";}
+            }
+            System.out.println("最大出現次數的數字為：" + str);
+            System.out.println("出現次數為：" + maxCount[c]);
+        }
+    }
+    
+    
+    
+    //第九題
+    public static void Practive9()
+    {
+        String str1 = input("輸入 s1 為：");
+        String str2 = input("輸入 s2 為：");
+        if(str2.contains(str1)){System.out.println("YES");}
+        else{System.out.println("NO");}
+    }
+    
+    
+    
+    //第十題
+    public static void Practive10()
+    {
+        String str = input("輸入 N 及 M 為：");
+        String[] NM = str.split("\\s+");
+        byte[][] nmList = new byte[Integer.parseInt(NM[0])][Integer.parseInt(NM[1])];
+        for(int n=0;n<nmList.length;n++)
+        {
+            str = input("輸入矩陣數值第 " + (n+1) + " 列為：");
+            int m=0;
+            for(String retval: str.split("\\s+"))
+            {
+                nmList[n][m]=(byte)Integer.parseInt(retval);
+                m++;
+            }
+        }
+        
+        for(int m=0;m<Integer.parseInt(NM[1]);m++)
+        {
+            str = "";
+            for(int n=0;n<Integer.parseInt(NM[0]);n++){str += nmList[n][m]+" ";}
+            System.out.println("輸出矩陣數值第 " + (m+1) + "列為：" + str);
+        }
+        
+    }
+    
+    
+    
+    //第十一題
+    public static void Practive11()
+    {
+        byte[] day = {0,31,28,31,30,31,30,31,31,30,31,30};
+        short[] conDay = {21,50,80,111,142,173,204,236,267,297,327,356};
+        String[] conName = {"水瓶Aquarius","雙魚Pisces","牡羊Aries","金牛Taurus","雙子Gemini","巨蟹Cancer","獅子Leo","處女Virgo","天秤Libra","Scorpio天蠍","射手Sagittarius","魔羯Capricorn"};
+        String str = input("輸入月及日為：");
+        String[] md = str.split("\\s+");
+        short days = (short)Integer.parseInt(md[1]);
+        for(int i=0;i<Integer.parseInt(md[0]);i++)
+        {
+            days += day[i];
+        }
+        byte conNum=(byte)(conDay.length-1);
+        for(int i=0;i<conDay.length;i++)
+        {
+            if(days>=conDay[i]){conNum = (byte)i;}
+        }
+        System.out.println(conName[conNum]);
+    }
+    
+    
+    
+    //第十二題
+    public static void Practive12()
+    {
+        String[] list = input("輸入一整數序列為：").split(" ");
+        System.out.print("過半元素為：");
+        boolean c = true;
+        for(int i=0;i<list.length-1;i++)
+        {
+            int count = 1;
+            for(int j=i+1;j<list.length;j++)
+            {
+                if(list[i].equals(list[j])){count++;}
+            }
+            
+            if(count>list.length/2){System.out.print(list[i] + " ");c=false;break;}
+        }
+        if(c){System.out.println("NO");}else{System.out.println();}
+    }
+    
+    
+    
+    //第十三題
+    public static void Practive13()
+    {
+        String str = input("輸入一字元為：");
+        StringBuilder strb = new StringBuilder(str);
+        if(str.equals(strb.reverse().toString())){System.out.println("YES");}
+        else{System.out.println("NO");}
+    }
+    
+    
+    
+    //第十四題
+    public static void Practive14()
+    {
+        System.out.println("There are " + input("輸入一字串為：").length() + " characters");
+    }
+    
+    
+    
+    //第十五題
+    public static void Practive15()
+    {
+        
     }
 }
 
