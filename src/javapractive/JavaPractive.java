@@ -19,7 +19,7 @@ public class JavaPractive {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-        Practive15();
+        Practive16();
     } 
     
     public static String input(String text) //輸入函式
@@ -30,8 +30,10 @@ public class JavaPractive {
         return str;
     }
     
-    // 第一題
-    public static void Practive1() {
+    
+    // 第一題  找出數字字串中的最大質數
+    public static void Practive1()
+    {
         String str = input("請輸入正整數");
         ArrayList pm = new ArrayList();
         for(int c=1;c<=str.length();c++)
@@ -49,6 +51,7 @@ public class JavaPractive {
         else {System.out.println(Collections.max(pm));}
         
     }
+    
     public static boolean Prime(int num) //質數判斷函式
     {
         int i=2;
@@ -63,7 +66,7 @@ public class JavaPractive {
     
     
     
-    //第二題
+    //第二題  計算電費
     public static void Practive2()
     {
         String str = input("");
@@ -118,7 +121,7 @@ public class JavaPractive {
     
     
     
-    //第三題
+    //第三題  生肖
     public static void Practive3()
     {
         String[] zodiac = {"rat","ox","tiger","rabbit","dragon","snake","horse","sheep","monkey","rooster","dog","pig"};
@@ -139,7 +142,7 @@ public class JavaPractive {
     
     
     
-    //第四題
+    //第四題  2D 座標判斷及計算離原點距離
     public static void Practive4()
     {
         int x=Integer.parseInt(input("X 軸座標：")),y=Integer.parseInt(input("Y 軸座標："));
@@ -192,7 +195,7 @@ public class JavaPractive {
     
     
     
-    //第五題
+    //第五題  階層判斷
     public static void Practive5()
     {
         int m=Integer.parseInt(input("請輸入階乘值 M："));
@@ -207,7 +210,7 @@ public class JavaPractive {
     
     
     
-    //第六題
+    //第六題  兩數差值
     public static void Practive6()
     {
         String str = input("輸入值為：");
@@ -239,7 +242,7 @@ public class JavaPractive {
     
     
     
-    //第七題
+    //第七題  通話費率
     public static void Practive7()
     {
         int[] cost = {186, 386, 586, 986};
@@ -276,7 +279,7 @@ public class JavaPractive {
     
     
     
-    //第八題
+    //第八題  檢查數值是否重複
     public static void Practive8()
     {
         String str = input("輸入第一行正整數為：");
@@ -335,7 +338,7 @@ public class JavaPractive {
     
     
     
-    //第九題
+    //第九題  字根與子字串
     public static void Practive9()
     {
         String str1 = input("輸入 s1 為：");
@@ -346,7 +349,7 @@ public class JavaPractive {
     
     
     
-    //第十題
+    //第十題  轉置矩陣
     public static void Practive10()
     {
         String str = input("輸入 N 及 M 為：");
@@ -374,7 +377,7 @@ public class JavaPractive {
     
     
     
-    //第十一題
+    //第十一題  星座查詢
     public static void Practive11()
     {
         byte[] day = {0,31,28,31,30,31,30,31,31,30,31,30};
@@ -397,7 +400,7 @@ public class JavaPractive {
     
     
     
-    //第十二題
+    //第十二題  過半元素
     public static void Practive12()
     {
         String[] list = input("輸入一整數序列為：").split(" ");
@@ -418,7 +421,7 @@ public class JavaPractive {
     
     
     
-    //第十三題
+    //第十三題  迴文問題
     public static void Practive13()
     {
         String str = input("輸入一字元為：");
@@ -429,7 +432,7 @@ public class JavaPractive {
     
     
     
-    //第十四題
+    //第十四題  輸入字串算字元
     public static void Practive14()
     {
         System.out.println("There are " + input("輸入一字串為：").length() + " characters");
@@ -437,10 +440,145 @@ public class JavaPractive {
     
     
     
-    //第十五題
+    //第十五題  數字加密
     public static void Practive15()
     {
+        String str = input("輸入一組四位數字為：");
+        String outStr = "";
+        for(int i=2;i<str.length()+2;i++)
+        {
+            outStr += ((int)(str.charAt(i%4))+7-(int)'0')%10;
+        }
+        System.out.println(outStr);
+    }
+    
+    
+    
+    //第十六題  撲克遊戲 (暫時跳過)
+    public static void Practive16()
+    {
+        String[] str1 = input("").split(" ");
+        //String[] str2 = input("").split(" ");
+        int score1,score2;
+
+        System.out.println(ScoreCount(str1));
         
+        
+    }
+    
+    public static int ScoreCount(String[] str)
+    {
+        int score=0;
+        int[] num = new int[5];
+        for(int i=0;i<str.length;i++)
+        {
+            num[i] = Integer.parseInt(str[i].substring(1, str[i].length()));
+        }
+        int[] num1 = num;
+        Arrays.sort(num1);
+        for(int i=0;i<num.length;i++) //高牌花色分數
+        {
+            if(num1[4]==num[i]){score+=ColorScore(str[i].charAt(0));}
+        }
+        if(Sum(num1)/num1.length==(double)num[2]) //順子
+        {
+            score+=5000;
+            boolean color = true;
+            for(int i=1;i<str.length;i++){if(str[i].charAt(0)!=str[i-1].charAt(0)){color=false;}}
+            if(color){score+=2000;} //同花
+        }
+        int[] other = MaxCounter(num);
+        System.out.println(Arrays.toString(other));
+        switch(other[1])
+        {
+            case 4:
+                score += 6000;
+            case 5:
+                score += 5000;
+            case 3:
+                score += 3000;
+            case 8:
+                score += 2000;
+            case 2:
+                score += 1000;                
+        }
+        if(other[0]==1){score+=20;}
+        else{score+=other[0];}
+        
+        return score;
+    }
+    
+    public static int Sum(int[] list)
+    {
+        int total=0;
+        for(int i=0;i<list.length;i++)
+        {
+            total += list[i];
+        }
+        return total;
+    }
+    
+    public static int ColorScore(char color)
+    {
+        switch(color)
+        {
+            case 'S':
+                return 400;
+            case 'H':
+                return 300;
+            case 'D':
+                return 200;
+            case 'C':
+                return 100;
+        }
+        return 0;
+    }
+
+    public static int[] MaxCounter(int[] list)
+    {
+        int[] count = new int[5];
+        int[] num = new int[5];
+        for(int i=0;i<list.length;i++)
+        {
+            boolean a =true;
+            for(int j=0;j<num.length;j++)
+            {
+                if(list[i]==num[j]){a=false;count[j]++;}
+            }
+            if(a){num[i]=list[i];count[i]=1;}
+        }
+        int[] counter = {0,1};
+        int[] sort = {0,0};
+        boolean haveA = false;
+        for(int i=0;i<num.length;i++)
+        {
+            if(count[i]==4){counter[0]=num[i];counter[1]=4;return counter;}
+            if(count[i]==3){counter[0]=num[i];counter[1]=3;}
+            if(count[i]==2)
+            {   
+                counter[1]=2;
+                if(num[i]==1){counter[0]=1;}
+                else{if(sort[0]==0){sort[0]=num[i];}else{sort[1]=num[i];}}
+            }
+            if(num[i]==1){haveA=true;}
+        }
+        if(counter[1]==3 && sort[0]!=0){counter[1]=5;return counter;}
+        if(sort[1]!=0){counter[1]=8;}
+        Arrays.sort(sort);
+        Arrays.sort(num);
+        if(counter[0]==0){if(haveA){counter[0]=num[4];}else{counter[0]=1;}}
+        else if(counter[0]==1){}
+        else{counter[0]=sort[1];}
+        
+        return counter;
+    }
+    
+    
+    
+    //第十七題  矩陣相加
+    public static void Practive17()
+    {
+    
     }
 }
 
