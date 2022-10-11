@@ -19,7 +19,7 @@ public class JavaPractive {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-        Practive16();
+        Practive18();
     } 
     
     public static String input(String text) //輸入函式
@@ -32,7 +32,7 @@ public class JavaPractive {
     
     
     // 第一題  找出數字字串中的最大質數
-    public static void Practive1()
+    public static void Practive01()
     {
         String str = input("請輸入正整數");
         ArrayList pm = new ArrayList();
@@ -67,7 +67,7 @@ public class JavaPractive {
     
     
     //第二題  計算電費
-    public static void Practive2()
+    public static void Practive02()
     {
         String str = input("");
         float spend = Float.parseFloat(str);
@@ -122,7 +122,7 @@ public class JavaPractive {
     
     
     //第三題  生肖
-    public static void Practive3()
+    public static void Practive03()
     {
         String[] zodiac = {"rat","ox","tiger","rabbit","dragon","snake","horse","sheep","monkey","rooster","dog","pig"};
         short year = (short)Integer.parseInt(input(""));
@@ -143,7 +143,7 @@ public class JavaPractive {
     
     
     //第四題  2D 座標判斷及計算離原點距離
-    public static void Practive4()
+    public static void Practive04()
     {
         int x=Integer.parseInt(input("X 軸座標：")),y=Integer.parseInt(input("Y 軸座標："));
         if(x>0)
@@ -196,7 +196,7 @@ public class JavaPractive {
     
     
     //第五題  階層判斷
-    public static void Practive5()
+    public static void Practive05()
     {
         int m=Integer.parseInt(input("請輸入階乘值 M："));
         int n=1,sum=1;
@@ -211,7 +211,7 @@ public class JavaPractive {
     
     
     //第六題  兩數差值
-    public static void Practive6()
+    public static void Practive06()
     {
         String str = input("輸入值為：");
         ArrayList list = new ArrayList(); 
@@ -243,7 +243,7 @@ public class JavaPractive {
     
     
     //第七題  通話費率
-    public static void Practive7()
+    public static void Practive07()
     {
         int[] cost = {186, 386, 586, 986};
         float[] rate = {0.09f, 0.08f, 0.07f, 0.06f};
@@ -280,7 +280,7 @@ public class JavaPractive {
     
     
     //第八題  檢查數值是否重複
-    public static void Practive8()
+    public static void Practive08()
     {
         String str = input("輸入第一行正整數為：");
         byte[] num = new byte[Integer.parseInt(str)];
@@ -339,7 +339,7 @@ public class JavaPractive {
     
     
     //第九題  字根與子字串
-    public static void Practive9()
+    public static void Practive09()
     {
         String str1 = input("輸入 s1 為：");
         String str2 = input("輸入 s2 為：");
@@ -578,7 +578,69 @@ public class JavaPractive {
     //第十七題  矩陣相加
     public static void Practive17()
     {
+        String[] str = input("").split("\\s+");
+        int len1[] = {Integer.parseInt(str[0]),Integer.parseInt(str[1])};
+        String[][] list1 = new String[len1[0]][]; 
+        for(int i=0;i<len1[0];i++)
+        {
+            list1[i] = input("").split("\\s+");
+        }
+        str = input("").split("\\s+");
+        int len2[] = {Integer.parseInt(str[0]),Integer.parseInt(str[1])};
+        String[][] list2 = new String[len2[0]][]; 
+        for(int i=0;i<len2[0];i++)
+        {
+            list2[i] = input("").split("\\s+");
+        }
+        if(len1[0]==len2[0] && len1[1]==len2[1])
+        {
+            for(int i=0;i<len1[0];i++)
+            {
+                for(int j=0;j<len1[1];j++)
+                {
+                    System.out.print(Integer.parseInt(list1[i][j])+Integer.parseInt(list2[i][j])+" ");
+                }
+                System.out.println();
+            }
+        }
+        else
+        {
+            System.out.println("兩個矩陣無法相加");
+        }
+    }
     
+    
+    
+    //第十八題  撲克牌 13 點
+    public static void Practive18()
+    {
+        String[] str = input("").split("\\s+");
+        int[] a = {1,11,12,13};
+        String[] c = {"A","J","Q","K"};
+        int sum = 0;
+        for(int i=0;i<str.length;i++)
+        {
+            boolean ch = true;
+            for(int j=0;j<c.length;j++)
+            {
+                if(c[j].equals(str[i])){ch = false;sum += a[j];}
+            }
+            if(ch){sum += Integer.parseInt(str[i]);}
+        }
+        System.out.println(sum);
+    }
+    
+    
+    
+    //第十九題  親骨肉判斷
+    public static void Practive19()
+    {
+        String str = input("測試的資料量：");
+        for(int i=0;i<Integer.parseInt(str);i++)
+        {
+            str = input("");
+            
+        }
     }
 }
 
