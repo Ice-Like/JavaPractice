@@ -19,7 +19,7 @@ public class JavaPractive {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-        Practive24();
+        Practive30();
     } 
     
     public static String input(String text) //輸入函式
@@ -812,20 +812,225 @@ public class JavaPractive {
         {
             array[i] = splitInt(input(""),"\\s+");
         }
-        int[][] loc = new int[3][2];
+        ArrayList maxLoc = new ArrayList();
         int maxSum = 0; 
         int maxC = 0;
+        ArrayList maxL = new ArrayList();
         for(int c=0;c<3;c++)
         {
             for(int i=0;i<size;i++)
             {
                 for(int j=0;j<size;j++)
-                {
-
+                {   
+                    boolean a = true;
+                    ArrayList loc = new ArrayList();
+                    loc.add(i);
+                    loc.add(j);
+                    if(maxLoc.contains(loc)){a=false;}
+                    if(a)
+                    {
+                        if(maxC<array[i][j])
+                        {
+                            maxC = array[i][j];
+                            maxL = loc;
+                        }
+                    }
                 }
             }
+            maxLoc.add(maxL);
+            maxSum += maxC;
+            maxC = 0;
+            
+        }
+        System.out.println("最大值為："+maxSum);
+        System.out.print("位置為");
+        for(int i=0;i<maxLoc.size();i++)
+        {
+            String[] str = maxLoc.get(i).toString().replace("[","").replace("]","").replace(" ","").split(",");
+            System.out.print("(" + (Integer.parseInt(str[0])+1) + "," + (Integer.parseInt(str[1])+1) + ")");
+            if(i==maxLoc.size()-1){System.out.println();break;}
+            System.out.print(",");
         }
     }
+    
+    
+    
+    //第二十五題  學期成績計算
+    public static void Practive25()
+    {
+        int[] list = splitInt(input("請輸入考試次數及學生數："),"\\s+");
+        double[] ratio = splitDouble(input("每次考試所佔的比率："),"\\s+");
+        
+        int[][] std = new int[list[1]][];
+        for(int i=0;i<list[1];i++)
+        {
+            std[i] = splitInt(input(""),"\\s+");
+        }
+        double sum = 0;
+        for(int r=0;r<list[0];r++)
+        {
+            for(int s=0;s<list[1];s++)
+            {
+                sum += ratio[r]*std[s][r];
+            }
+        }
+        System.out.println("全班的總平均值為："+Math.round(sum/list[1]*100)/100.00);                
+    }
+    
+    public static double[] splitDouble(String str, String s) //字串分割為double陣列
+    {
+        ArrayList list = new ArrayList(); 
+        for(String retval: str.split(s))
+        {
+            list.add(retval);
+        }
+        
+        double[] num = new double[list.size()];
+        for (int i=0;i<list.size();i++)
+        {
+            num[i] = Double.parseDouble((String)list.get(i));
+        }
+        return num;
+    }
+    
+    
+    
+    //第二十六題  字元出現次數
+    public static void Practive26()
+    {
+        String str = "";
+        while(!str.equals("end"))
+        {
+            str = input("檢測的字串(end 結束)：");
+            if(str.equals("end")){System.out.println("檢測結束");break;}
+            String strC = input("檢測的單一字元：");
+            char StrC = strC.charAt(0);
+            int count = 0;
+            for(int i=0;i<str.length();i++)
+            {
+                if(str.charAt(i)==StrC){count++;}
+            }
+            System.out.println("字元 " + strC + " 出現次數為：" + count);
+        }
+    }
+    
+    
+    
+    //第二十七題  最長迴文數字子數列
+    public static void Practive27()
+    {
+        String str = "";
+        while(!str.equals("end"))
+        {
+            str = input("輸入整數陣列(end 結束)：");
+            if(str.equals("end")){System.out.println("結束");break;}
+            String ans = "";
+            for(int i=0;i<str.length();i++)
+            {
+                for(int j=0;j<str.length()-i;j++)
+                {
+                    String sub = str.substring(j,j+i+1);
+                    StringBuilder strb = new StringBuilder(sub);
+                    if(sub.equals(strb.reverse().toString())){ans = sub;}
+                }
+            }
+            System.out.println(ans);
+        }
+    }
+    
+    
+    
+    //第二十八題  反矩陣
+    public static void Practive28()
+    {
+        int a,b,c,d;
+        String[] str = input("").split("\\s+");
+        a = Integer.parseInt(str[0]);
+        b = Integer.parseInt(str[1]);
+        str = input("").split("\\s+");
+        c = Integer.parseInt(str[0]);
+        d = Integer.parseInt(str[1]);
+        double A,B,C,D;
+        double S = a*d-b*c;
+        A = d / S;
+        B = -b / S;
+        C = -c / S;
+        D = a / S;
+        System.out.println(A + " " + B);
+        System.out.println(C + " " + D);
+        
+    }
+    
+    
+    
+    //第二十九題  洗刷刷
+    public static void Practive29()
+    {
+        String str1 = input("甲方的數字：");
+        String str2 = input("乙方的數字：");
+        System.out.print("洗刷刷結果：");
+        for(int i=0;i<str1.length();i++)
+        {
+            switch(str1.charAt(i))
+            {
+                case '1':
+                    if(str2.charAt(i)=='5'){System.out.print("贏");}
+                    else if(str2.charAt(i)=='2'){System.out.print("輸");}
+                    else{System.out.print("和");}
+                    break;
+                case '2':
+                    if(str2.charAt(i)=='1'){System.out.print("贏");}
+                    else if(str2.charAt(i)=='3'){System.out.print("輸");}
+                    else{System.out.print("和");}
+                    break;
+                case '3':
+                    if(str2.charAt(i)=='2'){System.out.print("贏");}
+                    else if(str2.charAt(i)=='4'){System.out.print("輸");}
+                    else{System.out.print("和");}
+                    break;
+                case '4':
+                    if(str2.charAt(i)=='3'){System.out.print("贏");}
+                    else if(str2.charAt(i)=='5'){System.out.print("輸");}
+                    else{System.out.print("和");}
+                    break;
+                case '5':
+                    if(str2.charAt(i)=='4'){System.out.print("贏");}
+                    else if(str2.charAt(i)=='1'){System.out.print("輸");}
+                    else{System.out.print("和");}
+                    break;
+            }
+        }
+        System.out.println();
+    }
+    
+    
+    
+    //第三十題  猜數字
+    public static void Practive30()
+    {
+        String ans = "1234";
+        System.out.println(ans);
+        String str = "";
+        while(!str.equals("0000"))
+        {
+            str = input("");
+            if(str.equals("0000")){break;}
+            int a = 0 , b = 0;
+            for(int i=0;i<ans.length();i++)
+            {
+                for(int j=0;j<ans.length();j++)
+                {
+                    if(str.charAt(i)==ans.charAt(j))
+                    {
+                        if(i==j){a++;}
+                        else{b++;}
+                    }
+                }
+            }
+            System.out.println(a+"A"+b+"B");
+        }
+    }
+    
 }
 
 
