@@ -19,7 +19,7 @@ public class JavaPractive {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-        Practive18();
+        Practive24();
     } 
     
     public static String input(String text) //輸入函式
@@ -635,11 +635,195 @@ public class JavaPractive {
     //第十九題  親骨肉判斷
     public static void Practive19()
     {
-        String str = input("測試的資料量：");
-        for(int i=0;i<Integer.parseInt(str);i++)
+        int num = Integer.parseInt(input("測試的資料量："));
+        for(int i=0;i<num;i++)
         {
-            str = input("");
+            String str = input("");
+            String[] list = str.split("\\s+");
+            if(list[0].equals("O"))
+            {
+                if(list[1].equals("O"))
+                {
+                    if (list[2].equals("O")){ System.out.println("YES"); }
+                    else { System.out.println("IMPOSSIBLE"); }
+                }
+                else if(list[1].equals("A"))
+                {
+                    if (list[2].equals("O")){ System.out.println("YES"); }
+                    else if (list[2].equals("A")){ System.out.println("YES"); }
+                    else { System.out.println("IMPOSSIBLE"); }
+                }
+                else if(list[1].equals("B"))
+                {
+                    if (list[2].equals("O")){ System.out.println("YES"); }
+                    else if (list[2].equals("B")){ System.out.println("YES"); }
+                    else { System.out.println("IMPOSSIBLE"); }
+                }
+                else
+                {
+                    if (list[2].equals("A")){ System.out.println("YES"); }
+                    else if (list[2].equals("B")){ System.out.println("YES"); }
+                    else { System.out.println("IMPOSSIBLE"); }
+                }
+            }
+            else if(list[0].equals("A"))
+            {
+                if(list[1].equals("A"))
+                {
+                    if (list[2].equals("O")){ System.out.println("YES"); }
+                    else if (list[2].equals("A")){ System.out.println("YES"); }
+                    else { System.out.println("IMPOSSIBLE"); }
+                }
+                else if(list[1].equals("O"))
+                {
+                    if (list[2].equals("O")){ System.out.println("YES"); }
+                    else if (list[2].equals("A")){ System.out.println("YES"); }
+                    else { System.out.println("IMPOSSIBLE"); }
+                }
+                else if(list[1].equals("B"))
+                {
+                    System.out.println("YES");
+                }
+                else
+                {
+                    if (!list[2].equals("O")){ System.out.println("YES"); }
+                    else { System.out.println("IMPOSSIBLE"); }
+                }
+            }
+            else if(list[0].equals("B"))
+            {
+                if(list[1].equals("B"))
+                {
+                    if (list[2].equals("O")){ System.out.println("YES"); }
+                    else if (list[2].equals("B")){ System.out.println("YES"); }
+                    else { System.out.println("IMPOSSIBLE"); }
+                }
+                else if(list[1].equals("O"))
+                {
+                    if (list[2].equals("O")){ System.out.println("YES"); }
+                    else if (list[2].equals("B")){ System.out.println("YES"); }
+                    else { System.out.println("IMPOSSIBLE"); }
+                }
+                else if(list[1].equals("A"))
+                {
+                    System.out.println("YES");
+                }
+                else
+                {
+                    if (!list[2].equals("O")){ System.out.println("YES"); }
+                    else { System.out.println("IMPOSSIBLE"); }
+                }
+            }
+            else
+            {
+                if(list[1].equals("O"))
+                {
+                    if (list[2].equals("A")){ System.out.println("YES"); }
+                    else if (list[2].equals("B")){ System.out.println("YES"); }
+                    else { System.out.println("IMPOSSIBLE"); }
+                }
+                else
+                {
+                    if (!list[2].equals("O")){ System.out.println("YES"); }
+                    else { System.out.println("IMPOSSIBLE"); }
+                }
+            }
             
+        }
+    }
+    
+    
+    
+    //第二十題  電影票購買計算
+    public static void Practive20()
+    {
+        int num = Integer.parseInt(input("組數為："));
+        for(int i=1;i<=num;i++)
+        {
+            String[] list = input("第 " + i + " 組：").split("\\s+");
+            System.out.println("第 " + i + " 組應收費用：" + (Integer.parseInt(list[0])*250+Integer.parseInt(list[1])*175) );
+        }
+    }
+    
+    
+    //第二十一題  學生資料搜尋
+    public static void Practive21()
+    {
+        String[] sid = {"123","456","789","321","654"};
+        String[] name = {"Tom","Cat","Nana","Lim","Won"};
+        String[] cls = {"DTGD","CSIE","ASIE","DBA","FDD"};
+        String str = input("輸入查詢學號為：");
+        for(int i=0;i<sid.length;i++)
+        {
+            if(str.equals(sid[i])){System.out.println("學生資料為："+sid[i]+" "+name[i]+" "+cls[i]);}
+        }
+    }
+    
+    
+    
+    //第二十二題  提款機搜尋
+    public static void Practive22()
+    {
+        String[] account = {"123","456","789","336","775","566"};
+        String[] passwd = {"456","789","888","558","666","221"};
+        String[] count = {"9000","5000","6000","10000","12000","7000"};
+        int num = Integer.parseInt(input("輸入查詢組數 N 為："));
+        for(int i=1;i<=num;i++)
+        {
+            String[] list = input("").split("\\s+");
+            byte c = 0;
+            for(int j=0;j<account.length;j++)
+            {
+                if(list[0].equals(account[j])){
+                    if(list[1].equals(passwd[j])) {System.out.println(count[j]);}
+                    else {System.out.println("error");}                        
+                }
+                else
+                {
+                    c++;
+                }
+            }
+            if(c==account.length){System.out.println("error");}
+        }
+        
+    }
+    
+    
+    
+    //第二十三題  積分近似值
+    public static void Practive23()
+    {
+        String str = "";
+        while(!str.equals("-1"))
+        {
+            str = input("輸入值 n 為：");
+            if(str.equals("-1")){break;}
+            System.out.println(Math.round(Math.pow(Integer.parseInt(str), 3)/3*10)/10.0);
+        }
+    }
+    
+    
+    //第二十四題 求陣列元素最大值的和
+    public static void Practive24()
+    {
+        int size = Integer.parseInt(input("請輸入陣列大小："));
+        int[][] array = new int[size][];
+        for(int i=0;i<size;i++)
+        {
+            array[i] = splitInt(input(""),"\\s+");
+        }
+        int[][] loc = new int[3][2];
+        int maxSum = 0; 
+        int maxC = 0;
+        for(int c=0;c<3;c++)
+        {
+            for(int i=0;i<size;i++)
+            {
+                for(int j=0;j<size;j++)
+                {
+
+                }
+            }
         }
     }
 }
