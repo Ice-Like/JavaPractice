@@ -19,7 +19,7 @@ public class JavaPractive {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-        Practive30();
+        Practive40();
     } 
     
     public static String input(String text) //輸入函式
@@ -1031,6 +1031,234 @@ public class JavaPractive {
         }
     }
     
+    
+    
+    //第三十一題  矩陣分素乘積
+    public static void Practive31()
+    {
+        int[] size = splitInt(input("輸入矩陣的維度："),"\\s+");
+        int[][] num1 = new int[size[0]][];
+        int[][] num2 = new int[size[0]][];
+        for(int i=0;i<size[0];i++)
+        {
+            num1[i] = splitInt(input(""),"\\s+");
+        }
+        for(int i=0;i<size[0];i++)
+        {
+            num2[i] = splitInt(input(""),"\\s+");
+        }
+        for(int i=0;i<size[0];i++)
+        {
+            for(int j=0;j<size[1];j++)
+            {
+                System.out.print(num1[i][j]*num2[i][j]+" ");
+            }
+            System.out.println();
+        }
+    }
+    
+    
+    
+    //第三十二題  販賣機
+    public static void Practive32()
+    {
+        int money = Integer.parseInt(input("小明身上有幾元："));
+        int count = 0;
+        int total = Integer.parseInt(input("販賣機有幾種飲料："));
+        for(int i=0;i<total;i++)
+        {
+            if(money>=Integer.parseInt(input(""))){count++;}
+        }
+        System.out.println(count);
+    }
+    
+    
+    
+    //第三十三題  期末成績
+    public static void Practive33()
+    {
+        int max = 0;
+        int min = 100;
+        int maxL = 0;
+        int minL = 0;
+        int sum = 0;
+        String[] sName = {"國文","英文","微積分","體育","程式設計"};
+        for(int i=0;i<sName.length;i++)
+        {
+            int score = Integer.parseInt(input(sName[i]+"："));
+            if(score>max)
+            {
+                max = score;
+                maxL = i;
+            }
+            if(score<min)
+            {
+                min = score;
+                minL = i;
+            }
+            sum += score;
+        }
+        System.out.println("平均分數：" + Math.round((double)sum/sName.length*100.0)/100.0);
+        System.out.println("最高分科目：" + sName[maxL] + " " + max + " 分");
+        System.out.println("最低分科目：" + sName[minL] + " " + min + " 分");
+        
+    }
+    
+    
+    
+    //第三十四題  新公倍數
+    public static void Practive34()
+    {
+        int num = Integer.parseInt(input("輸入一正整數："));
+        System.out.print("22 為新公倍數？："); 
+        if(num%22==0 && num%35!=0){ System.out.println("Yes"); }
+        else { System.out.println("No"); }
+    }
+    
+    
+    
+    //第三十五題  子字串判斷
+    public static void Practive35()
+    {
+        String str1 = input("輸入 sA 為：");
+        String str2 = input("輸入 sB 為：");
+        System.out.print("子字串判斷為：");
+        if(str2.contains(str1)){System.out.println("YES");}
+        else{System.out.println("NO");}
+    }
+    
+    
+    
+    //第三十六題  等差或者是等比數列判斷
+    public static void Practive36()
+    {
+        int numSize = Integer.parseInt(input(""));
+        int[] num = new int[4];
+        for(int i=0;i<numSize;i++)
+        {
+            for(int j=0;j<num.length;j++)
+            {
+                num[j] = Integer.parseInt(input(""));
+            }
+            boolean c = true;
+            boolean C = true;
+            int s = num[1]-num[0];
+            int S = num[1]/num[0];
+            
+            for(int j=1;j<num.length-1;j++)
+            {
+                if(num[j+1]-num[j]!=s){ c = false; }
+                if(num[j+1]/num[j]!=S){ C = false; }
+            }
+            
+            if(c)
+            {
+                for(int j=0;j<num.length;j++){ System.out.print(num[j] + " "); }
+                System.out.println(num[3]+s);
+                System.out.println("此為等差數列");
+            }
+            else if(C)
+            {
+                for(int j=0;j<num.length;j++){ System.out.print(num[j] + " "); }
+                System.out.println(num[3]*s);
+                System.out.println("此為等比數列");
+            }
+            else
+            {
+                System.out.println("不是等差也不是等比");
+            }
+        }
+    }
+    
+    
+    
+    //第三十七題  3n+1 問題
+    public static void Practive37()
+    {
+        int n = Integer.parseInt(input("整數 n："));
+        System.out.print("數列：");
+        int count = 1;
+        while(n>1)
+        {
+            System.out.print(n + " ");
+            if(n%2==0){ n /= 2; }
+            else { n = 3*n+1; }
+            count++;
+            if(n==1){System.out.println(n);}
+        }
+        System.out.println("cycle length：" + count);
+    }
+    
+    
+    
+    //第三十八題  走失的小狗
+    public static void Practive38()
+    {
+        int size = Integer.parseInt(input(""));
+        ArrayList numList = new ArrayList();
+        ArrayList numLocList = new ArrayList();
+        for(int i=0;i<size;i++)
+        {
+            int num = Integer.parseInt(input(""));
+            if(num%9==0 || num%11==0){
+                numList.add(num);
+                numLocList.add(i);
+            }
+        }
+        for(int i=0;i<numList.size();i++)
+        {
+            System.out.println("第 " + ((int)numLocList.get(i)+1)+ " 個點 " + numList.get(i));
+        }
+    }
+    
+    
+    
+    //第三十九題  迴圈練習
+    public static void Practive39()
+    {
+        int size = Integer.parseInt(input(""));
+        for(int i=0;i<size;i+=2)
+        {
+            for(int j=i;j<size;j+=2){System.out.print(' ');}
+            for(int j=0;j<=i;j++){System.out.print('*');}
+            System.out.println();
+        }
+        for(int i=size-3;i>=0;i-=2)
+        {
+            for(int j=i;j<size;j+=2){System.out.print(' ');}
+            for(int j=0;j<=i;j++){System.out.print('*');}
+            System.out.println();
+        }
+    }
+    
+    
+    
+    //第四十題  迴圈練習
+    public static void Practive40()
+    {
+        int size = Integer.parseInt(input(""));
+        for(int i=1;i<size;i+=2)
+        {
+            for(int j=0;j<size/2;j++){System.out.print(' ');}
+            System.out.println(i);
+        }
+        for(int i=1;i<size;i+=2){System.out.print(i);}
+        for(int i=size;i>0;i-=2){System.out.print(i);}
+        System.out.println();
+        for(int i=size-2;i>0;i-=2)
+        {
+            for(int j=0;j<size/2;j++){System.out.print(' ');}
+            System.out.println(i);
+        }
+    }
+    
+    
+    
+    //第四十一題  電梯費用
+    public static void Practive41()
+    {
+        
+    }
 }
 
 
